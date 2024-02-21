@@ -8,7 +8,7 @@ import java.awt.*;
 public class GamePanel extends JPanel implements Runnable {
 
     final int originalTileSize = 16;
-    final int scale  = 3 ;
+    final int scale  = 3  ;
     public int tileSize = originalTileSize * scale ; //48*48
     final int maxScreenCol = 40 ; //1920
     final int maxScreenRow = 22 ; //1080
@@ -16,6 +16,8 @@ public class GamePanel extends JPanel implements Runnable {
     final int screenheight = tileSize * maxScreenRow ;
     KeyHandler keyH = new KeyHandler();
     Thread gameThread ;
+
+
     Player player = new Player(this, keyH);
 
 
