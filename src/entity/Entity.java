@@ -16,6 +16,7 @@ public class Entity {
     public String state;
 
     public BufferedImage player ;
+    public BufferedImage player_Mirrored;
     public  String direction;
 
     public int spritecounter = 0;
