@@ -13,6 +13,7 @@ public class Player extends  Entity {
     GamePanel gp ;
     KeyHandler keyH ;
     int countI = 0;
+    int counter_For_CountI = 1;
     boolean isMirrored = false;
 
 
@@ -30,15 +31,14 @@ public class Player extends  Entity {
         y = 100 ;
         speed = 3 ;
         sprint = 5 ;
-        direction = "down";
-        state = "idle";
+        direction = "right";
+        state = "sprinting";
     }
 
 
     public void getPlayerImages(){
 
         try{
-
             player = ImageIO.read(getClass().getResourceAsStream("/player/marche_face_nue.png"));
             player_Mirrored = ImageIO.read(getClass().getResourceAsStream("/player/marche_nue.png"));
 
@@ -95,13 +95,27 @@ public class Player extends  Entity {
                 x -= speed;
                 direction = "left";
                 state = "walking";
+            }if (keyH.downReleased) {
+                counter_For_CountI = 1;
+            }if (keyH.upReleased) {
+                counter_For_CountI = 1;
             }
         }
+     /*   System.out.println(" spriteCounter: " + spritecounter
+                + " spriteNumber: " + spriteNumber
+                + " countI: " + countI
+                +" counter_For_CountI: " + counter_For_CountI
+        );*/
 
-        System.out.println(state);
-       if(keyH.isKeyPressed == false) {
+     /*  if(keyH.rightPressed == false
+               && keyH.leftPressed == false
+               && keyH.upPressed == false
+               && keyH.downPressed == false) {
             state = "idle";
         }
+
+      */
+
 
 
 
@@ -150,7 +164,7 @@ public class Player extends  Entity {
                     image = player.getSubimage(258,193 , gp.tileSize , gp.tileSize);
                 }
                 if (spriteNumber == 2) {
-                    image = player.getSubimage(258,193 , gp.tileSize , gp.tileSize);
+                    image = player.getSubimage(387,193 , gp.tileSize , gp.tileSize);
                 }
                 if (spriteNumber == 3) {
                     image = player.getSubimage(258,193 , gp.tileSize , gp.tileSize);
@@ -159,7 +173,7 @@ public class Player extends  Entity {
                     image = player.getSubimage(387,193 , gp.tileSize , gp.tileSize);
                 }
                 if (spriteNumber == 5) {
-                    image = player.getSubimage(387,193 , gp.tileSize , gp.tileSize);
+                    image = player.getSubimage(258,193 , gp.tileSize , gp.tileSize);
                 }
                 if (spriteNumber == 6) {
                     image = player.getSubimage(387,193 , gp.tileSize , gp.tileSize);
@@ -257,6 +271,117 @@ public class Player extends  Entity {
 
     public BufferedImage PlayerRunning(BufferedImage image){
         switch (direction){
+            case  "up" :
+                switch (countI) {
+                    case 0:
+                        if (spriteNumber == 1) {
+                            image = player_Mirrored.getSubimage(512, 193, gp.tileSize, gp.tileSize);
+                        }
+                        if (spriteNumber == 2) {
+                            image = player_Mirrored.getSubimage(704, 193, gp.tileSize, gp.tileSize);
+                        }
+                        if (spriteNumber == 3) {
+                            image = player.getSubimage(448, 193, gp.tileSize, gp.tileSize);
+                        }
+                        if (spriteNumber == 4) {
+                            image = player.getSubimage(256, 193 , gp.tileSize, gp.tileSize);
+                        }
+                        if (spriteNumber == 5) {
+                            image = player_Mirrored.getSubimage(512, 193, gp.tileSize, gp.tileSize);
+                        }
+                        if (spriteNumber == 6) {
+                            image = player_Mirrored.getSubimage(704, 193, gp.tileSize, gp.tileSize);
+                            counter_For_CountI++;
+                            if(counter_For_CountI >= 12){
+                                countI++;
+                                counter_For_CountI = 1;
+                            }
+                        }
+                        break;
+                    case 1:
+                        if (spriteNumber == 1) {
+                            image = player.getSubimage(448, 193, gp.tileSize, gp.tileSize);
+                        }
+                        if (spriteNumber == 2) {
+                            image = player.getSubimage(256, 193, gp.tileSize, gp.tileSize);
+                        }
+                        if (spriteNumber == 3) {
+                            image = player_Mirrored.getSubimage(512, 193, gp.tileSize, gp.tileSize);
+                        }
+                        if (spriteNumber == 4) {
+                            image = player_Mirrored.getSubimage(704,193 , gp.tileSize, gp.tileSize);
+                        }
+                        if (spriteNumber == 5) {
+                            image = player.getSubimage(448, 193, gp.tileSize, gp.tileSize);
+                        }
+                        if (spriteNumber == 6) {
+                            image = player.getSubimage(256, 193, gp.tileSize, gp.tileSize);
+                            counter_For_CountI++;
+                            if(counter_For_CountI >= 12){
+                                countI--;
+                                counter_For_CountI = 1;
+                            }
+                        }
+                        break;
+                }
+                break;
+            case  "down" :
+                switch (countI) {
+                    case 0:
+                        if (spriteNumber == 1) {
+                            image = player_Mirrored.getSubimage(768, 193, gp.tileSize, gp.tileSize);
+                        }
+                        if (spriteNumber == 2) {
+                            image = player_Mirrored.getSubimage(960, 193, gp.tileSize, gp.tileSize);
+                        }
+                        if (spriteNumber == 3) {
+                            image = player.getSubimage(192, 193, gp.tileSize, gp.tileSize);
+                        }
+                        if (spriteNumber == 4) {
+                            image = player.getSubimage(0, 193 , gp.tileSize, gp.tileSize);
+                        }
+                        if (spriteNumber == 5) {
+                            image = player_Mirrored.getSubimage(768, 193, gp.tileSize, gp.tileSize);
+                        }
+                        if (spriteNumber == 6) {
+                            image = player_Mirrored.getSubimage(960, 193, gp.tileSize, gp.tileSize);
+                            counter_For_CountI++;
+                            if(counter_For_CountI >= 12){
+                                countI++;
+                                counter_For_CountI = 1;
+                            }
+
+
+                        }
+                        break;
+                    case 1:
+                        if (spriteNumber == 1) {
+                            image = player.getSubimage(192, 193, gp.tileSize, gp.tileSize);
+                        }
+                        if (spriteNumber == 2) {
+                            image = player.getSubimage(0, 193, gp.tileSize, gp.tileSize);
+                        }
+                        if (spriteNumber == 3) {
+                            image = player_Mirrored.getSubimage(768, 193, gp.tileSize, gp.tileSize);
+                        }
+                        if (spriteNumber == 4) {
+                            image = player_Mirrored.getSubimage(960,193, gp.tileSize, gp.tileSize);
+                        }
+                        if (spriteNumber == 5) {
+                            image = player.getSubimage(192, 193, gp.tileSize, gp.tileSize);
+                        }
+                        if (spriteNumber == 6) {
+                            image = player.getSubimage(0, 193, gp.tileSize, gp.tileSize);
+                            counter_For_CountI++;
+                            if(counter_For_CountI >= 12){
+                                countI--;
+                                counter_For_CountI = 1;
+                            }
+
+                        }
+                        break;
+                }
+                break;
           case  "right" :
               switch (countI) {
                   case 0:
@@ -277,6 +402,7 @@ public class Player extends  Entity {
                       }
                       if (spriteNumber == 6) {
                           image = player.getSubimage(384, 255, gp.tileSize, gp.tileSize);
+
                           countI++;
                       }
                       break;
